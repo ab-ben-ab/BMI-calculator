@@ -1,0 +1,244 @@
+
+<Check@MDCheckbox>:
+    group: 'sex'
+    size_hint: None, None
+    size: dp(48), dp(48)
+
+
+<bMi>:
+
+	Screen:
+		NavigationLayout:
+			ScreenManager:
+				id: screen_manager
+				Screen:
+					name: "scr 1"
+					BoxLayout:
+						orientation: 'vertical'
+						MDToolbar:
+							id: toolbar
+							pos_hint: {"top": 1}
+							elevation: 10
+							title: "BMI Calculator"
+							md_bg_color: 0.8470588235294118, 0.34901960784313724, 1, 1
+							font_name: 'Segoe UI'
+							left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+						Widget:
+		
+					FloatLayout:
+						age: age
+						textinheight: textinheight
+						textinweight: textinweight
+						
+						MDLabel:
+							text: "Male"
+							size_hint: 0.3, 0.2
+							pos_hint: {'x':  .15,  'y':  .65}
+							
+						MDLabel:
+							text: "Female"
+							size_hint: 0.3, 0.2
+							pos_hint: {'x':  .63,  'y':  .65}
+							
+						Check:
+							id: male
+							active: True
+							pos_hint: {'center_x':  .30,  'center_y':  .75}
+							on_active:
+								
+						Check:
+							id: female
+							pos_hint: {'center_x': .83, 'center_y': .75}
+							on_active:
+
+						MDTextField:										# AGE
+							hint_text: "Age" 
+							mode: "rectangle"
+							color_mode: 'custom'
+							line_color_focus: 1, 0, 1, 1
+							pos_hint: {'center_x': .2, 'center_y': .55}
+							size_hint: .15, .1
+							id: age
+							text: "" 
+							multiline: False
+							required: True
+
+					
+						MDTextField:										# WEIGHT
+							hint_text: "Weight"
+							helper_text: "Kg"
+							helper_text_mode: "on_focus"
+							id: textinweight
+							text:  ""
+							multiline: False
+							required: True
+							mode: "rectangle"
+							color_mode: 'custom'
+							line_color_focus: 1, 0, 1, 1
+
+							pos_hint: {'center_x': .8, 'center_y': .55}
+							size_hint: .15, .1
+
+
+						MDTextField:										# HEIGHT
+							hint_text: "Height"
+							helper_text: "Cm"
+							helper_text_mode: "on_focus"
+							id: textinheight
+							text:  ""
+							multiline: False
+							required: True
+							mode: "rectangle"
+							color_mode: 'custom'
+							line_color_focus: 1, 0, 1, 1
+
+							pos_hint: {'center_x': .5, 'center_y': .55}
+							size_hint: .15, .1
+
+
+						MDFlatButton:
+							text: "Calculate"
+							font_size: "18sp"
+							md_bg_color: 0.8470588235294118, 0.34901960784313724, 1, 1
+							pos_hint: {'center_x': 0.5, 'center_y': .1}
+							size_hint: 1,  .20
+							on_release:
+								root.calculate(age.text, textinweight.text, textinheight.text)
+				Screen:
+					name: "scr 2"
+					BoxLayout:
+						orientation: 'vertical'
+						MDToolbar:
+							id: toolbar
+							pos_hint: {"top": 1}
+							elevation: 10
+							title: "BMI Calculator (Imperial)"
+							md_bg_color: 0.0 , 0.7098039215686275, 0.5882352941176471, 1
+							font_name: 'Segoe UI'
+							left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+						Widget:
+		
+					FloatLayout:
+						inage: inage
+						inheight: inheight
+						inweight: inweight
+						
+						MDLabel:
+							text: "Male"
+							size_hint: 0.3, 0.2
+							pos_hint: {'x':  .15,  'y':  .65}
+							
+						MDLabel:
+							text: "Female"
+							size_hint: 0.3, 0.2
+							pos_hint: {'x':  .63,  'y':  .65}
+							
+						Check:
+							id: inmale
+							active: True
+							pos_hint: {'center_x':  .30,  'center_y':  .75}
+
+								
+						Check:
+							id: infemale
+							pos_hint: {'center_x': .83, 'center_y': .75}
+
+
+						MDTextField:										# AGE
+							hint_text: "Age"
+							mode: "rectangle"
+							color_mode: 'custom'
+							line_color_focus: 0.0 , 0.7098039215686275, 0.5882352941176471, 1
+							pos_hint: {'center_x': .2, 'center_y': .55}
+							size_hint: .15, .1
+							id: inage
+							text: ""
+							multiline: False
+							required: True
+
+					
+						MDTextField:										# WEIGHT
+							hint_text: "Weight"
+							helper_text: "lbs"
+							helper_text_mode: "on_focus"
+							id: inweight
+							text:  ""
+							multiline: False
+							required: True
+							mode: "rectangle"
+							color_mode: 'custom'
+							line_color_focus: 0.0 , 0.7098039215686275, 0.5882352941176471, 1
+
+							pos_hint: {'center_x': .8, 'center_y': .55}
+							size_hint: .15, .1
+
+
+						MDTextField:										# HEIGHT
+							hint_text: "Height"
+							helper_text: 'inch'
+							helper_text_mode: "on_focus"
+							id: inheight
+							text:  ""
+							multiline: False
+							required: True
+							mode: "rectangle"
+							color_mode: 'custom'
+							line_color_focus: 0.0 , 0.7098039215686275, 0.5882352941176471, 1
+
+							pos_hint: {'center_x': .5, 'center_y': .55}
+							size_hint: .15, .1
+
+
+						MDFlatButton:
+							text: "Calculate"
+							font_size: "18sp"
+							md_bg_color: 0.0 , 0.7098039215686275, 0.5882352941176471, 1
+							pos_hint: {'center_x': 0.5, 'center_y': .1}
+							size_hint: 1,  .20
+							on_release:
+								root.calculate_in(inage.text, inweight.text, inheight.text)
+								
+								
+			MDNavigationDrawer:
+				id: nav_drawer
+				FloatLayout:
+					MDLabel:
+						text: "BMI Calculator"
+						pos_hint: {"center_x": 0.7, 'y': 0.44}
+						font_size: "27sp"
+						color: 0.0 , 0.0, 0.5019607843137255, 1
+								
+					
+					MDFlatButton:
+						text: "Cm/ Kg"
+						font_size: "18sp"
+						md_bg_color: 0.8470588235294118, 0.34901960784313724, 1, 1
+						size_hint: 1,  .20
+						pos_hint: {'center_x': 0.5, 'y': .65}
+						on_release:
+							screen_manager.current="scr 1"; nav_drawer.set_state("closed")
+							
+					MDFlatButton:
+						text: "Inch/ lbs"
+						font_size: "18sp"
+
+						md_bg_color: 0.0 , 0.7098039215686275, 0.5882352941176471, 1
+						size_hint: 1,  .20
+						pos_hint: {'center_x': 0.5, 'y': .45}
+						on_release:
+							screen_manager.current="scr 2"; nav_drawer.set_state("closed")
+					
+					MDFlatButton:
+						text: "Quit"
+						font_size: "18sp"
+						text_color: 1, 1, 1, 1
+						md_bg_color: 0.1245796864 , 0.0, 0.367947843137255, 1
+						size_hint: 1,  .16
+						pos_hint: {'center_x': 0.5, 'y': .02}
+						on_release:
+							app.stop() 
+					
+				
+				
+
+				
